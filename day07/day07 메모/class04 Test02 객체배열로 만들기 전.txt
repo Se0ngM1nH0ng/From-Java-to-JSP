@@ -1,0 +1,35 @@
+		System.out.print("이름을 입력해 주세요 >> ");
+		name = sc.next();
+		System.out.print("레벨을 입력해 주세요 >> ");
+		level = sc.nextInt();
+		xp = rand.nextInt(11);
+
+		Pokemon po1 = new Pokemon(name,level,xp);
+
+		po1.printInfo();
+	
+		System.out.print("이름을 입력해 주세요 >> ");
+		name = sc.next();
+		System.out.print("레벨을 입력해 주세요 >> ");
+		level = sc.nextInt();
+		xp = rand.nextInt(11);
+
+		Pokemon po2 = new Pokemon(name,level,xp);
+
+		po2.printInfo();
+	
+		System.out.print("이름을 입력해 주세요 >> ");
+		name = sc.next();
+		System.out.print("레벨을 입력해 주세요 >> ");
+		level = sc.nextInt();
+		xp = rand.nextInt(11);
+
+		Pokemon po3 = new Pokemon(name,level,xp);
+
+		po3.printInfo();
+
+		System.out.print("이름을 입력해 주세요 >> ");
+		name = sc.next();
+		System.out.print("레벨을 입력해 주세요 >> ");
+		level = sc.nextInt();
+		xp = rand.nextInt(11);
