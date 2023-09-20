@@ -1,0 +1,44 @@
+day 10
+class 01
+Test01
+연습
+
+
+
+실습 1) 점 클래스 Point가 있습니다.
+
+int x,int y를 멤버변수로 가지고있습니다.
+   좌표
+x,y의 좌표가 같다면 같은 점으로 인식할수있도록해주세요!~~
+
+main(){
+   Point[] data=new Point[3];
+   data[0]에는 점(10,20)
+   data[1]에는 점(123,20)
+   data[2]에는 점(10,20)
+      이 저장되어있습니다.
+   data[0]과 data[1],
+   data[0]과 data[2]를 비교해주세요!~~
+}
+
+실습 2) 색깔점 클래스 ColorPoint가 있습니다.
+
+int x,int y,String color를 멤버변수로 가지고있습니다.
+         점색깔
+x,y의 좌표가 같아도 색이 다르면 다른 점으로 인식할수있도록
+
+main(){
+   ColorPoint[] data=new ColorPoint[3];
+   data[0]에는 파랑(10,20)
+   data[1]에는 파랑(10,20)
+   data[2]에는 빨강(10,20)
+      이 저장되어있습니다.
+   data[0]과 data[1],
+   data[0]과 data[2]를 비교해주세요!~~
+}
+
+
+
+
+
+
