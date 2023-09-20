@@ -1,0 +1,32 @@
+class Player
+   최대 3마리의 포켓몬을 소유할수있다.
+   Player 생성시 최초 소지 포켓몬은 무조건 피카츄이다.
+   final static int maxIndex=3;
+   int preIndex; // 1
+   Pokemon[] data; // new Pokemon[maxIndex]
+   // data[0]=new 피카츄();
+   void play()
+      // data에 저장된 포켓몬을 랜덤으로 2마리 선택하여 게임을 진행
+      // 단, 2마리의 포켓몬이 서로 같은 포켓몬이면 더이상 진행하지않음 [Object최상위클래스->equals() 오버라이딩]
+               클래스 타입이 같으면 같은 포켓몬
+      // 서로 다른 포켓몬이면 포켓몬.game()을 진행함
+      // 이긴 포켓몬의 울음소리가 console에 출력됨
+      // 포켓몬.hello()
+
+class Pokemon [abstract]
+   String name;
+   int win; // 이긴횟수
+   void hello() // 울음소리. 하위클래스에 따라 수행되는 기능이 다름에 유의 [오버라이딩 강제->추상메서드]
+   boolean game(Pokemon pokemon)
+      // win이 홀홀일때는 작은쪽이 이김
+      // win이 짝짝일때는 큰쪽이 이김
+      // win이 홀짝일때는 홀수가 이김
+      // win이 동일하다면 주어(주체)가 이김
+      // 이후 이긴쪽의 win이 1 증가
+
+
+
+1. 포켓몬 추가
+2. 가진 포켓몬 전체 출력
+3. 게임시키기
+4. 프로그램 종료

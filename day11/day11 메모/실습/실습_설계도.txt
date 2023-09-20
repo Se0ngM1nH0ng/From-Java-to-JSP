@@ -1,0 +1,182 @@
+모든 멤버변수는 private 처리
+따라서, 게터 세터를 생성 하기.
+
+1. 멤버변수 갯수 파악하기 => 2개라는것을 알고 있음.
+2. 멤버변수를 생성자에서 초기화 하기.
+	1) 자료형을 알아야 초기화가 가능.
+	2) 자료형에 맞춰서 값을 설정 가능.
+
+class Player {
+
+멤버변수 : 
+final static int maxIndex = 3;
+int preIndex;
+Pokemon[] data;
+
+// int[] data = new int[3];
+//  타입  변수명 = new 타입[갯수];
+
+생성자 :
+Player() {
+
+this.data = new Pokemon[maxIndex]; -> 배열 공간 초기화
+data[0] = new 피카츄();
+this.preIndex = 1;
+}
+
+메서드 : 
+void play() {
+	1. data 배열에 저장된 포켓몬을 랜덤으로 2마리 선택.
+	int index;
+	data[index] = rand.nextint(3);	//	0, 1, 2
+	data[index] = rand.nextint(3);  // 	2마리니까 2번
+
+	2. 근데, 만약에 랜덤으로 나온게 서로 같아
+	data[0] 랑 data[0] 가 같아..
+	뭐가 같아? 그 배열안에 들어있는 객체(포켓몬) 자체가 같을때 (타입이)
+	게임을 진행하지 않고 멈춤.
+	같은지 어떻게 비교 ?
+	=>
+	기존에 equals 메서드를 오버라이딩 해서 사용하기.
+	그리고, 비교했더니 서로 다른 클래스 타입이야 !
+	그러면 포켓몬.game()을 진행한다. -> ???
+	
+	3. 이긴 포켓몬의 울음소리가 console에 출력되게
+	이긴 포켓몬을 의미하는 참조변수.hello()
+
+void makePokemon() {
+	1. 피카츄 생성해서 0번째 배열은 찼으니 ?
+	1번째 배열이랑 2번째 배열에 포켓몬을 채워야 함.
+	2. data[1] = new 파이리();
+	3. data[2] = new 꼬부기();	
+}
+
+}	//	Player class
+---------------------------------------------------------
+
+abstract class Pokemon {
+
+멤버변수 :
+String name;
+int win;
+
+생성자 : 
+Pokemon(String name) {
+
+this.name = name;
+this.win = 0;
+
+}
+
+메서드 :
+abstract void hello(); 울음소리 기능 ->
+기능 필요 없음. 왜 ? 포켓몬 마다 울음소리가 달라서. 
+추상 메서드로 만들고, 하위 클래스에서 강제로
+오버라이딩 해서 이 메서드를 사용해야만 한다.
+
+boolean game(Pokemon pokemon) {
+	1. 어떤 포켓몬 vs 어떤 포켓몬
+	각자의 win이 동일하면 ?
+	주체가 되는 포켓몬이 승리 !
+	승리한 포켓몬은 win++
+	aaa.equals(bbb)
+	이런식으로 표현한다면,
+	aaa가 주체가 된다.
+
+	2. 어떤 포켓몬 vs 어떤 포켓몬
+	각자의 win이 둘다 홀수인 상황 ?
+	win이 더 작은쪽의 객체가 승리 !
+	승리한 포켓몬은 win++
+
+	3. 어떤 포켓몬 vs 어떤 포켓몬
+	각자의 win이 둘다 짝수인 상황 ?
+	win이 더 큰쪽의 객체가 승리 ! 
+
+	4. 어떤 포켓몬 vs 어떤 포켓몬
+	this.win % 2 == 1 이면
+	this.win ++;
+	return true;
+
+	아니라면 ~ (짝수라면)
+	pokemon.win++;
+	return false;
+
+}
+
+게터, 세터 만들기.
+
+}	//	Pokemon class (추상클래스)
+----------------------------------------------
+
+class 피카츄 extends Pokemon {
+
+멤버변수 :
+x
+
+생성자 :
+피카츄() {
+
+super("피카츄")
+
+}
+
+메서드 :
+void hello() {	//	오버라이딩
+sysout("피카피카")
+
+}
+
+
+}	//	피카츄 extends Pokemon class
+----------------------------------------------
+
+class 파이리 extends Pokemon {
+
+멤버변수 :
+x
+
+생성자 :
+파이리() {
+
+super("파이리")
+
+}
+
+메서드 :
+void hello() {	//	오버라이딩
+sysout("파아")
+
+}
+
+}	//	파이리 extends Pokemon class
+-------------------------------------------------	
+
+class 꼬부기 extends Pokemon {
+
+멤버변수 :
+x
+
+생성자 :
+꼬부기() {
+
+super("꼬부기")
+
+}
+
+메서드 :
+void hello() {	//	오버라이딩
+sysout("꼬북")
+
+}
+
+}	//	꼬부기 extends Pokemon class
+----------------------------------------------------
+
+main()
+
+
+
+
+
+
+
