@@ -1,0 +1,186 @@
+C
+R
+U
+D
+
+class Product {
+
+멤버변수 :
+
+private int PK;		//	상품 고유 번호
+private	String name;	//	상품 이름
+private int price;	//	상품 가격
+private int stock;	//	상품 재고
+
+
+생성자 :
+
+Product(int PK,String name,int price,int stock) {
+
+this.PK = PK;
+this.name = name;
+this.price = price;
+this.stock = stock;
+sysout(this.name + "상품이 생성 됬습니다.")
+
+}
+
+메서드 :
+
+판매() U
+
+1. 생성된 상품을 n개 구매할거야.. 구매 가능 ? 
+(생성된 상품의 재고가 구매하려고 하는 개수보다 많거나 같아 ?)
+(많거나 같으면 구매 가능)
+(적으면 구매 불가능)
+2. 가능하면 ? (stock - 구매개수)
+총가격은 price * 구매개수 를 안내 해주고,
+3. 반환값으로 총가격을 뱉어내기 
+4. 불가능 ?
+상품 stock가 부족합니다 안내 하고,
+반환값으로 총가격은 0원 리턴 해주기.
+
+int sell(int 구매개수) {
+
+if(this.stock >= 구매개수) {
+this.stock = this.stock - 구매개수;
+int 총가격 = 구매개수 * this.price;
+sysout(총금액은 총가격 입니다.)
+return 총가격; 
+}
+
+else {
+
+sysout(this.name + 상품의 재고가 부족합니다.)
+return 0;
+}
+
+}
+
+재고변경() U
+
+1. 이 기능은, 관리자만 재고 변경이 가능한 것으로.
+2. 새로운 stock을 입력받으면 기존에 stock에서
+새로 입력한 재고 갯수로 바뀌는 기능
+
+void changeStock(int stock) {
+
+this.stock = stock;
+
+}
+
+toString() R
+메서드를 오버라이딩 해서 재정의 하기.
+=> 출력용도.
+
+public String toString() { R
+
+return this.PK + "번 상품 " + this.name +
+"은 " + this.price + "원 이고 재고는 " + 
+this.stock + " 입니다."
+
+}
+
+멤버변수 게터 세터 만들기
+
+} // class product
+
+
+main()
+
+CRUD
+-----------------------------------------
+상품목록출력 => R
+(재고가 없는 상품은 [품절]로 뜨게 하기)
+
+구매하기 => U
+(위에 만든 sell 메서드를 사용)
+
+프로그램 종료
+만약 (입력 받은 값이 n이야 ?)
+sysout(프로그램을 종료 합니다.)
+break;
+-----------------------------------------
+상품추가 => C
+(상품을 추가할 때 생성되는 객체의 인자는 4개)
+(상품 고유번호, 이름, 가격, 재고)
+(add() 메서드)
+(관리자 기능으로)
+
+상품재고변경 => U
+(위에만든 changeStock 메서드를 사용)
+(관리자 기능으로)
+
+상품삭제 = > D
+(삭제 기능 ?)
+기존에 입력한 상품을 없애는..?
+객체를 없애는 기능?
+(remove() 메서드)
+(관리자 기능으로) 
+
+관리자 모드 종료
+만약 (입력 받은 값이 n이야 ?)
+sysout(프로그램을 종료 합니다.)
+break;
+------------------------------------------
+
+1. 상품(Product) 객체를 저장할 공간을 만들기 !
+ArrayList <Product> data
+= new ArrayList <Product> ();
+(ArrayList 클래스를 사용해서 객체배열리스트를 만들기)
+
+2. 상품객체의 고유번호는 1001번 부터 부여하기로 정함.
+int numPK = 1001;
+
+3. 스캐너로 입력 받기
+int select;
+(상품의 이름, 가격, 재고를 입력 받아야 하니)
+
+4. 프로그램이 언제 종료할지 모르니 while로
+
+=========== 프로그램==============
+1. 상품목록출력
+2. 구매하기
+3. 프로그램 종료
+===============================
+상품목록출력
+(toString() 메서드 오버라이딩 해서 사용)
+
+구매하기
+(sell 메서드 사용)
+data.get(구매할 상품을 가리키는 인덱스).sell(구매할 개수)
+
+
+5. 관리자 모드
+
+=============프로그램 관리자모드=============
+1. 상품추가
+2. 상품목록출력
+3. 상품재고변경
+4. 상품삭제
+5. 프로그램 종료
+======================================
+상품추가
+(ArrayList 클래스 안에 메서드를 사용해보기)
+(add() 메서드)
+data.add(new product(PK,name,price,stock))
+
+상품목록출력
+(toString() 메서드 오버라이딩 해서 사용)
+
+상품재고변경
+(changeStock 메서드 사용)
+data.get(변경할 상품을 가리키는 인덱스).changeStock(변경할 재고의 개수);
+
+상품삭제
+(ArrayList 클래스 메서드를 사용해보기 ?)
+(remove() 메서드)
+data.remove(0)
+data.remove(1)
+data.remove(2)
+...
+
+
+
+
+
