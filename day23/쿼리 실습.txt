@@ -1,0 +1,165 @@
+mysql> use hwanDB;
+Database changed
+
+mysql> SHOW TABLES;
+Empty set (0.00 sec)
+
+mysql> CREATE TABLE STUDENT(
+    -> NUM INT PRIMARY KEY AUTO_INCREMENT,
+    -> NAME VARCHAR(15) NOT NULL,
+    -> SCORE INT DEFAULT 0,
+    -> POS VARCHAR(10) NOT NULL,
+    -> LV INT DEFAULT 5
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> SHOW TABLES;
++------------------+
+| Tables_in_hwandb |
++------------------+
+| student          |
++------------------+
+1 row in set (0.00 sec)
+
+-------------------------------------------------------------------
+
+INSERT INTO  테이블명(VO,VO,VO,..) VALUES(VO,VO,VO,..); (삽입)
+INSERT INTO STUDENT (NAME,SCORE,POS,LV) VALUES('오리아나',24,'미드',8);
+
+=> Create
+
+-------------------------------------------------------------------
+
+SELECT * FROM STUDENT;
+(어디에서부터 어디까지만 보고 싶어 ~)
+
+SELECT NAME, POS FROM STUDENT;
+(NAME 에서부터 POS 까지만 보고 싶어.)
+
+=> Read
+
+-------------------------------------------------------------------
+
+UPDATE STUDENT SET SCORE = 1, LV = 4 WHERE NUM = 12;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+=> Update
+
+-------------------------------------------------------------------
+
+DELETE FROM STUDENT WHERE NUM = 12;
+
+=> Delete
+
+(Delete는 FROM을 넣어줘야 한다)
+
+------------------------------------------
+
+mysql> -- 학생 테이블에서 번호가 6이하 이면서, (이면서는 AND)
+mysql> -- 점수는 20초과, 포지션은 정글, 바텀, 서포터인 목록 보여줘 ~ (WHERE 구문)
+mysql> SELECT * FROM STUDENT WHERE NUM <= 6 AND SCORE > 20 AND POS IN ('정글','바텀','서포터');
++-----+----------+-------+--------+------+
+| NUM | NAME     | SCORE | POS    | LV   |
++-----+----------+-------+--------+------+
+|   3 | 아무무   |    82 | 서포터 |    6 |
+|   4 | 모르가나 |    73 | 서포터 |    7 |
++-----+----------+-------+--------+------+
+2 rows in set (0.01 sec)
+
+------------------------------------------
+
+mysql> -- 포지션 열이 탑인 데이터 중에, 점수 열이 50미만인 데이터 검색해주세요.
+mysql> select * from STUDENT WHERE POS = '탑' AND SCORE < 50;
++-----+----------+-------+-----+------+
+| NUM | NAME     | SCORE | POS | LV   |
++-----+----------+-------+-----+------+
+|   1 | 티모     |     0 | 탑  |    5 |
+|   8 | 그웬     |     0 | 탑  |    5 |
+|   9 | 이렐리아 |     0 | 탑  |    5 |
+|  11 | 말파이트 |     0 | 탑  |    6 |
++-----+----------+-------+-----+------+
+4 rows in set (0.00 sec)
+
+------------------------------------------
+
+mysql> -- 정렬 해보자 !
+mysql> -- 레벨 내림차순으로
+mysql> SELECT * FROM STUDENT WHERE POS = '탑' AND SCORE < 50 ORDER BY LV DESC;
++-----+----------+-------+-----+------+
+| NUM | NAME     | SCORE | POS | LV   |
++-----+----------+-------+-----+------+
+|  11 | 말파이트 |     0 | 탑  |    6 |
+|   1 | 티모     |     0 | 탑  |    5 |
+|   8 | 그웬     |     0 | 탑  |    5 |
+|   9 | 이렐리아 |     0 | 탑  |    5 |
++-----+----------+-------+-----+------+
+4 rows in set (0.00 sec)
+
+------------------------------------------
+
+mysql> -- 레벨은 오름차순, 같은 레벨이면 번호로 내림차순
+mysql> SELECT * FROM STUDENT WHERE POS = '탑' AND SCORE < 50 ORDER BY LV ASC, NUM DESC;
++-----+----------+-------+-----+------+
+| NUM | NAME     | SCORE | POS | LV   |
++-----+----------+-------+-----+------+
+|   9 | 이렐리아 |     0 | 탑  |    5 |
+|   8 | 그웬     |     0 | 탑  |    5 |
+|   1 | 티모     |     0 | 탑  |    5 |
+|  11 | 말파이트 |     0 | 탑  |    6 |
++-----+----------+-------+-----+------+
+4 rows in set (0.00 sec)
+
+------------------------------------------
+
+mysql> -- 이름에 아 가 들어가는 아이를 출력.
+mysql> SELECT * FROM STUDENT WHERE NAME LIKE '%아%'; (LIKE 구문)
++-----+----------+-------+--------+------+
+| NUM | NAME     | SCORE | POS    | LV   |
++-----+----------+-------+--------+------+
+|   2 | 아리     |    80 | 미드   |    5 |
+|   3 | 아무무   |    82 | 서포터 |    6 |
+|   5 | 오리아나 |    24 | 미드   |    8 |
+|   9 | 이렐리아 |     0 | 탑     |    5 |
++-----+----------+-------+--------+------+
+4 rows in set (0.03 sec)
+
+------------------------------------------
+
+mysql> DROP TABLE STUDENT; (STUDENT 테이블을 비어줘 ~) (DROP 구문)
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SHOW TABLES; (테이블을 보여줘 -> 위에서 비어줘서 안나옴)
+Empty set (0.00 sec)
+
+------------------------------------------
+
+
+
+CREATE TABLE STUDENT(
+    -> NUM INT PRIMARY KEY AUTO_INCREMENT,
+    -> NAME VARCHAR(15) NOT NULL,
+    -> SCORE INT DEFAULT 0,
+    -> POS VARCHAR(10) NOT NULL,
+    -> LV INT DEFAULT 5
+    -> );
+
+NUM
+NAME
+SCORE
+POS
+LV
+은 VO를 의미한다.
+
+쿼리는 변수명과 타입을 자바와 다르게 거꾸로 순서.
+
+타입뒤에 적혀있는것은, "제약 조건"을 의미 한다.
+
+PRIMARY KEY AUTO_INCREMENT :
+시스템에서 값을 자동으로 증가시켜주세요.
+
+NOT NULL :
+값이 없으면 안된다는 말.
+
+DEFAULT 0 :
+기본값을 0으로 설정 해주라는 말.
