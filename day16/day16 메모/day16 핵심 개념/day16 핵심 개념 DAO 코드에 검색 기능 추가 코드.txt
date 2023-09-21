@@ -1,0 +1,26 @@
+검색 기능 추가 하고 싶을때 논리적 사고
+
+1. 전체목록출력 =>
+그냥 내가가진 멤버변수 datas 반환
+
+2. 검색결과출력 =>
+이름을보고, 그 이름을 가진 애들을 반환
+
+아래의 코드 기존 DAO 코드에 추가 하기..
+
+----------------------------------------------------------------
+
+public ArrayList<DrinkVO> selectAll(DrinkVO vo) {
+      if(vo.getName() == null) {
+         return datas;
+      }
+      else {
+         ArrayList<DrinkVO> datas = new ArrayList<DrinkVO>();
+         for(DrinkVO data : this.datas) {
+            if(data.getName().contains(vo.getName())) { // 검색이름이 data이름에 존재해? equals()가 아니다..
+               datas.add(data);				// contains() ?  모르면 구글 검색.
+            }
+         }            
+         return datas;
+      }
+   }

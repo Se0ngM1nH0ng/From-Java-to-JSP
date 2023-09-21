@@ -1,0 +1,66 @@
+package ctrl;
+
+import java.util.ArrayList;
+
+import model.DrinkDAO;
+import model.DrinkVO;
+import view.DrinkView;
+
+public class DrinkCtrl {
+   private DrinkView view;
+   private DrinkDAO dao;
+   public DrinkCtrl() {
+      view=new DrinkView();
+      dao=new DrinkDAO();
+   }
+
+   public void startApp() {
+      while(true) {
+         int action=view.printMenu();
+
+         if(action==1) {
+            String name=view.getDrinkName();
+            int price=view.getDrinkPrice();
+            int cnt=view.getDrinkCnt();
+            DrinkVO vo=new DrinkVO(0,name,price,cnt);
+            // DAO의 CRUD에게 전달해야하는 값만 설정
+            // 전달하지않아도되는 값들은 0,null 등으로 설정
+            if(dao.insert(vo)) {
+               view.printTrue();
+            }
+            else {
+               view.printFalse();
+            }
+         }
+         else if(action==2) {
+            ArrayList<DrinkVO> datas=dao.selectAll(null);
+            view.printDrinkList(datas);
+         }
+         else if(action==3) {
+            int num=view.getDrinkNum();
+            int cnt=1;
+            DrinkVO vo=new DrinkVO(num,null,0,cnt);
+            if(dao.update(vo)) {
+               view.printTrue();
+            }
+            else {
+               view.printFalse();
+            }
+         }
+         else if(action==4) {
+            int num=view.getDrinkNum();
+            DrinkVO vo=new DrinkVO(num,null,0,0);
+            if(dao.delete(vo)) {
+               view.printTrue();
+            }
+            else {
+               view.printFalse();
+            }
+         }
+         else if(action==5) {
+            view.printEnd();
+            break;
+         }
+      }
+   }
+}
