@@ -1,0 +1,58 @@
+"제약조건" 고민해보기 !
+
+CREATE TABLE MOVIE(
+num INT PK AUTO_INCREMENT,
+name VARCHAR(500) NOT NULL,
+	-> 500 정도 하면 한글 기준으로 200자 정도 가능
+ODATE VARCHAR(30) NOT NULL
+);
+
+ODATE : 개봉일
+---------------------------------------------
+
+private ArrayList<MovieVO> mdatas;
+
+	public MovieDAO() {
+
+		this.mdatas = new ArrayList<MovieVO>();
+	}
+
+-> 얘는 DB꺼다.
+DAO에 넣으면 자바가 꺼질때 이것도 종료되기 때문에,
+DB는 자바가 꺼져도 데이터가 보존된다.
+
+------------------------------------------
+
+executeQuery : SELECT
+OUTPUT : 
+
+executeUpdate : INSERT, UPDATE, DELETE
+OUTPUT : INT
+
+------------------------------------------
+
+mysql> INSERT INTO MOVIE VALUES(1,'영화','개봉일');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> UPDATE MOVIE SET NAME = '이름' WHERE NAME = '영화';
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE MOVIE SET NAME = '이름' WHERE NAME = '영화';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> DELETE FROM MOVIE WHERE NUM < 2;
+Query OK, 1 row affected (0.00 sec)
+
+적용된 만큼 아웃풋이 INT로 나온다.
+1 1 0 1 처럼
+
+
+
+
+
+
+
+
+
