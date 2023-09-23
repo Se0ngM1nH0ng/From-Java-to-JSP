@@ -1,0 +1,48 @@
+1. ProductVO
+	int pk
+	String name
+	int price
+
+
+
+
+->	총가격 출력하기.
+
+배열리스트에 있는 모든 상품의 가격을 확인해서
+for문을 돌면서 total = total + getPrice() ?
+
+기존 배열리스트에 있는 상품객체들을 getPrice 해야하는데,,,
+
+	
+=>	티셔츠 2000 
+=>	티셔츠 2000 
+
+장바구니에 있는 상품목록 출력 => SelectAll()
+
+
+
++) 중복상품이라 장바구니 Xxx
+
+
+=> 티셔츠 2000 한개만 되게.
+
+상품을 확인해야하네? 
+selectOne()
+
+++)
+
+로그인 vo.dao 만들기.
+
+멤버 vo랑 멤버 dao 하라고.
+
+
+-------------------------------------------------------------------------------
+
+for(String data : datas) {	//	datas 는 ArrayList<String> datas 이다.
+				out.println("<li>" + data + "<li>");
+			}
+
+
+
+
+

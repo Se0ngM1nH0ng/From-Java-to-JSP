@@ -1,0 +1,6 @@
+setAttribute("mid",null); >> mid를 null로 set 해줘.
+removeAttribute("mid"); >> mid 속성을 지워줘.
+invalidate(); >> 데이터 전부를 지워줘.
+
+
+location.href = 'a.jsp'; >> 어디 경로로 이동해줘.
