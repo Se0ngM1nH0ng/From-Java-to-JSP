@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>웹에서 기본제공해주는 다양한 객체 == BOM</title>
+</head>
+<body>
+
+	<h1>BOM : window 객체</h1>
+
+	<hr>
+
+
+	<button type="button">새 창 열기</button>
+	<button type="button">창 닫기</button>
+
+
+	<script type="text/javascript">
+		var newWindow;
+		var btnArr = document.querySelectorAll('button');
+
+		//btnArr[0].addEventListener('이벤트', 함수명); // 첫번째 버튼에게는 이거 클릭하면 새로운 창 열어줘 
+		btnArr[0].addEventListener('click', openWindow);
+		function openWindow() {
+			newWindow = window.open(); // 팝업으로도 띄울수 있다. 팝업은 설정 해줘야 한다. newWindow=window.open('','팝업창','width=400,height=300'); 
+			newWindow.document.write('<h1>새로운창의 페이지</h1>');
+		}
+
+		btnArr[1].addEventListener('click', closeWindow);
+
+		function closeWindow() {
+			if (newWindow != undefined) {
+				newWindow.close();
+			}
+		}
+	</script>
+
+</body>
+</html>

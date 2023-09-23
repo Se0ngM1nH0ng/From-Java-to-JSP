@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>키보드 입력 이벤트</title>
+<!--  테두리를 만들어 주자  -->
+<style type="text/css">
+
+	input{
+		border: 5px solid black;
+	}
+
+</style>
+</head>
+<body>
+
+<input type="text"  onkeydown="test(event)" placeholder="keydown 이벤트">
+
+<script> 
+	function test(event){
+		console.log(event.keyCode);
+		if(event.keyCode == 13){ // 엔터 라는 의미 enter
+			console.log(event.target); // 쓰레드 원리--> 얘가 한발짝 느리다 
+			alert(event.target.value); // 얘가 바로 찍힌다. 컴퓨터에 바로 찍힌다. 그래서 얘가 먼저 나옴  
+		}
+	}
+
+
+</script>
+</body>
+</html>
