@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습문제</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		function printInfo() {
+			document.write('정답을 ' + count + '번 만에 맞추셨습니다.')
+		}
+
+		
+		var randNum = Math.floor(Math.random() * 100) + 1;
+		var count = 0;
+
+		while (true) {
+			var input = prompt('숫자를 입력해주세요.')
+			count++;
+			if (randNum > input) {
+				window.alert('UP');
+			} else if (randNum < input) {
+				window.alert('DOWN');
+			} else if (randNum == input) {
+				break;
+			}
+		}
+		
+		printInfo();
+	</script>
+
+</body>
+</html>

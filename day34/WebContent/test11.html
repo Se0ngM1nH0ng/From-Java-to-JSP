@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습 풀이 - 심화</title>
+<style type="text/css">
+	#box {
+		width: 150px;
+		height: 50px;
+		background-color: lightgray;
+		cursor: pointer;
+		text-align: center;
+		line-height: 50px;
+	}
+</style>
+<script type="text/javascript">
+	// 누르면 색깔이 랜덤으로 바뀌고 싶어 
+	var colorDatas=['MediumSeaGreen','DodgerBlue','BlueViolet','Goldenrod','Tomato'];
+
+	function changeColor(obj){ // 함수 색깔을 바꿔줘 obj인자
+		// Math.floor(Math.random()*랜덤숫자개수)+처음시작하는수
+		var randNum=Math.floor(Math.random()*colorDatas.length); // Math.floor 소수점 이하의 숫자를 버림
+		obj.style.backgroundColor = colorDatas[randNum];
+		// obj의 배경스타일을 colorDatas 안에서 랜덤으로 바꿔줄거야
+		document.querySelector('#box').innerHTML = colorDatas[randNum];
+		// #box의 innerHTML(안을 전체 다 바꿈) <태그 자체 안을 바꿈>
+		// document.getElementById('box').innerHTML
+	}
+</script>
+</head>
+<body>
+
+	<div id="box" onclick="changeColor(this)">lightgray</div>
+
+</body>
+</html>

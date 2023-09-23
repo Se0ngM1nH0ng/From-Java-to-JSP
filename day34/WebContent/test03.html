@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자료형 스크립트</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+	var str="문자열";
+	var num=15;
+	var flag=true;
+	var arr=[1,2,3];
+	
+	console.log('str: '+str);
+	console.log('num: '+num);
+	console.log('flag: '+flag);
+	console.log('arr: '+arr);
+	
+	console.log('');
+	
+	var x = 1 + '100';
+	console.log(x);
+	
+	var x = true + '11'; // 동적타이핑 언어다 
+	console.log('x: '+x);
+	
+	console.log('');
+	
+	// 상
+	var a=null; // null값으로 초기화 한거
+	var b; // 초기화를 안한거 // 썼지만 값이 없다구 상태에 따라 출력상태가 다르다. // undefind 가 초기화 안된거 맞고요 
+	// var c; // 선언을 안한거 // 선언 자체가 안되어 있는거
+	console.log('');
+	
+	console.log('a: '+a);
+	console.log('b: '+b);
+	//console.log('c: '+c);
+	
+	console.log('');
+	console.log(10/0); // 무한대 
+	console.log(2*'apple'); // 넘버가 없다 
+	console.log(isNaN(113));
+	console.log(isNaN('113')); // 아니 이거 넘버야 이걸 동적 타이핑이라고 이해하는 동적 언어 // 웹에서는 모든 데이터를 문자로  
+	console.log(isNaN('banana')); // 문자이기 때문에 true
+	
+	
+	
+</script>
+
+
+</body>
+</html>

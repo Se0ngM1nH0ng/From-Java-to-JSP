@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ 
+ <!-- 커서를 올리면 포인터가 나오게 해줘 -->
+<style type="text/css">
+		img{
+			cursor: pointer; 
+		}
+</style>
+</head>
+<body>
+
+	<img id="test" alt="클릭하면 바뀌는 이미지" src="보노보노.jpg">
+<script type="text/javascript">
+	document.querySelector('#test').onclick=function(){ // querySelector :css선택자를 사용하여 요소를 찾습니다.
+		this.src='짱구2.jpg';	
+	};
+</script>
+
+</body>
+</html>

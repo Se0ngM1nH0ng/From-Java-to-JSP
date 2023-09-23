@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체</title>
+</head>
+<body>
+
+
+	<script type="text/javascript">
+		// 객체를 만드는 것이 아니라 다른사람이 작성한 코드에 객체가 있다면 해석하는 능력
+
+		function Car(name) {
+			this.name = name; // 멤버변수 초기화
+			this.printInfo = function() {
+				console.log('차의 주인은 '+this.name+'님입니다.');
+			}//멤버 함수 만드는법
+		}
+		// 생성자 선언 정의 
+
+		var car1 = new Car('홍길동'); // 객체를 생성할 때 new 생성자로 객체를 생성 
+		var car2 = new Car('티모');
+
+		console.log(car1); // 직접 출력
+		console.log(car2.name); // 멤버변수
+		car2.printInfo();  // 메서드
+	</script>
+
+</body>
+</html>
