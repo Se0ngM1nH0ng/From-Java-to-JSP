@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>가상클래스</title>
+<style type="text/css">
+	a{
+		color: lightblue;
+	}
+	a:hover{
+		color: red;
+	}
+	a:before{
+		content: "▶"
+	}
+	ul:after{
+		content: "이용해주셔서 감사합니다! ";
+	}
+</style>
+<!-- ul과 우선순위가 겹치는 것이 없기 때문에 a 다쓰고 밑에 다가 ul:before 이라고 써줘도 됨  -->
+<!-- 앞뒤로 멘트를 활용할 수도 있다.  -->
+<!--  뭔가 공통적으로 앞에 붙는 단어의 경우 css나 외부에서 스타일을 주기 때문에 크롤링이 안될수 있다 "▶" -->
+<!-- 마우스를 올리게 되면 빨간색으로 바꿔줄래 ? : 으로 붙는것을 가상 클래스 라고 한다. 임의로 뭔가를 지정해준다. -->
+</head>
+<body>
+
+<!--  쇼핑몰 네비게이션 바 등에서 활용되는거 -->
+<ul>
+	<li><a href="https://www.naver.com">전체 상품 목록보기</a></li>
+	<li><a href="https://www.naver.com">신상품 목록보기</a></li>
+	<li><a href="https://www.naver.com">BEST 목록보기</a></li>
+	<li><a href="https://www.naver.com">고객센터 문의하기</a></li>
+</ul>
+
+</body>
+</html>

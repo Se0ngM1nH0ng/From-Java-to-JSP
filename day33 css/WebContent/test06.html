@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>블록 요소를 인라인 요소로 변경하기</title>
+<style type="text/css">
+	li{
+		list-style-type: none;
+	}
+	.gnb li{
+		display: inline;
+	}
+	.gnb li a{
+		display: inline-block;
+		background: white;
+		color: black;
+		width: 150px;
+		text-align: center;
+		text-decoration: none;
+		height: 40px;
+		line-height: 40px;
+	}
+	.gnb li a:hover{
+	background: lightblue;
+	text-decoration: underline;
+	}
+</style>
+</head>
+<body>
+
+<!-- 쇼핑몰 내용 스킬적인 것들 배우기 -->
+<!-- 띄어쓰기를 안해도 한줄이 다 블록으로 차지하고 있어서 인라인 요소로 바꿔야 한다.  -->
+<!-- 글로벌 네비게이션 바 gnb  -->
+<ul class="gnb">
+	<li><a href="https://www.naver.com">전체 상품 목록보기</a></li>
+	<li><a href="https://www.naver.com">신상품 목록보기</a></li>
+	<li><a href="https://www.naver.com">BEST 목록보기</a></li>
+	<li><a href="https://www.naver.com">고객센터 문의하기</a></li>
+</ul>
+
+</body>
+</html>
