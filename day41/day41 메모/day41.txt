@@ -1,0 +1,59 @@
+---------------------------------------
+
+JAVA
+
+	M : JDBC
+
+JSP
+	V
+	C -> controller.jsp
+
+
+
+MVC 패턴 1
+
+a.jsp -> controller01.jsp -> b.jsp
+b.jsp -> controller02.jsp
+		data (전송할 데이터)
+
+이런 방식 요새 쓰지 않는다.
+
+
+
+MVC 패턴 2
+
+패턴 2 방식으로 다들 사용 한다.
+그래서 MVC 패턴을 사용 한다 ? == 패턴 2 방식이다.
+
+a.jsp -> controller.jsp -> b.jsp (아, action 01 이야 ?)
+	action 01 (웹툰 보여줘 ~)
+
+b.jsp -> controller.jsp -> c.jsp (아, action 02 이야 ?)
+	action 02 (웹툰 1개 보여줘 ~)
+		  (신의탑 보여줘 ~)
+
+즉,
+
+action 으로 값을 controller 에게 보내준다. 또한,
+
+controller는 오직 1개이고, 1개의 controller 와 연결 한다.
+
+if(action == 1) { .. }
+
+else if(action == 2) { .. }
+
+의 느낌 이다.
+
+자바에서도 원래 MVC 패턴 2 방식으로 했었다.
+
+
+
+
+
+
+
+
+
+
+
+
