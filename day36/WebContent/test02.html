@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>가위바위보 실습</title>
+<style>
+	#title{
+	width: 450px;
+	height: 50px;
+	margin: 5px;
+	background-color: lightblue;
+	cursor: pointer;
+	line-height: 50px;
+	text-align: center;
+	}
+	#content{
+	width: 450px;
+	height: 200px;
+	margin: 5px;
+	background-color: lightgreen;
+	text-align: center;
+	}
+	span, img{
+		margin: 5px;
+		text-align: center;
+	}
+
+</style>
+</head>
+<body>
+
+	<div id="title">게 임 시 작</div>
+	<div id="content">
+		<span>COM</span> 
+		<img id="com" alt="COM 이미지" src="images/scissors.png"> 
+		<span>ME</span> 
+		<img id="me" alt="ME 이미지" src="images/scissors.png">
+	</div>
+<script type="text/javascript">
+	document.querySelector('#title').onclick = function(){
+		if(this.firstChild.nodeValue == '게 임 시 작'){
+			this.firstChild.nodeValue = '결 과 확 인';
+			this.style.backgroundColor = 'pink';
+			this.style.color = 'white';
+			
+			play();
+		}else{
+			this.firstChild.nodeValue = '게 임 시 작';
+			this.style.backgroundColor = 'lightblue';
+			this.style.color = 'black';
+			
+			stop();
+		}	
+	};
+		var images = ["rock","scissors","paper"];
+	
+	function play(){
+		document.querySelector('#com').src='images/가위바위보.gif';
+		document.querySelector('#me').src='images/가위바위보.gif';
+	}
+	function stop(){
+		var comNum = Math.floor(Math.random()*3); //배열이 0~2 까지 시작하므로 아까 (랜덤*2)+1 실수 하지 말 것
+		var meNum = Math.floor(Math.random()*3); // 배열이 0~2 까지 시작하므로 아까 (랜덤*2)+1 실수 하지 말 것
+		
+		 document.querySelector('#com').src='images/'+images[comNum]+'.png'; // 혹시 나중에 배열글씨를 쓸일이 있을지 모르므로 png빼기  // 배열에 이미 .png가 존재하므로 뒤에 .png를 또 붙이지 말 것
+	     document.querySelector('#me').src='images/'+images[meNum]+'.png';  // 혹시 나중에 배열글씨를 쓸일이 있을지 모르므로 png빼기   // 배열에 이미 .png가 존재하므로 뒤에 .png를 또 붙이지 말 것
+	     
+	     setTimeout(function(){
+	    	 if((comNum+2)%3 == meNum){
+					alert('승리!');
+				}
+				else if(comNum == meNum){
+					alert('무승부');
+				}
+				else{
+					alert('패배...');
+				}
+	     },1000);
+	}
+	
+	
+
+
+
+</script>
+
+
+</body>
+</html>

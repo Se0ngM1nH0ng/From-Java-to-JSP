@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+	@keyframes test{
+	0% { background: blue; transform: translate(0,0);}
+	25% { background: purple; transform: translate(0,0);}
+	50% { background: pink; transform: translate(0,0);}
+	75% { background: green; transform: translate(0,0);}
+	100% { background: blue; transform: translate(0,0);}
+	
+	}
+	#box{
+		width: 300px;
+		height: 200px;
+		background-color: lightblue;
+		margin: 4px;
+		animation-name: test;
+		animation-duration: 5s;
+		animation-fill-mode: none;
+		animation-iteration-count: infinite;
+		
+	}
+	#wrap > div >button {
+		width: 100px;
+		height: 50px;
+		background-color: lightgray;
+		margin: 4px;
+		cursor: pointer;
+	}
+	
+</style>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.button1').click(function(){
+			$('#box').hide();
+		})
+	
+		$('.button2').click(function(){
+			$('#box').show();
+		})
+
+		$('.button3').click(function(){
+			$('#box').toggle();
+		})
+
+	});
+
+	
+	
+</script>
+</head>
+<body>
+
+
+<div id="wrap">
+	<div>
+		<button class="button1">버튼1</button>
+		<button class="button2">버튼2</button>
+		<button class="button3">버튼3</button>
+	</div>
+</div>
+	<div id="box"></div>
+
+
+</body>
+</html>
