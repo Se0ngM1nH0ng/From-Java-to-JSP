@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>slick slider 활용 3</title>
+    <!-- jQuery 사용 -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- slick slider css -->
+    <!-- CDN 사용-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <!--XEICON CND 사용-->
+    <link
+      rel="stylesheet"
+      href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"
+    />
+    <!--script-->
+     <!--slick slider 사용가능 -->
+    <script
+      type="text/javascript"
+      src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+
+
+    <style>
+      div img {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      }
+      .slider {
+        position: relative;
+      }
+      .slider button {
+        position: absolute;
+        z-index: 10;
+        top: 50%;
+        transform: translateY(-50);
+        width: 81px;
+        height: 81px;
+        border-radius: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+      }
+
+      .slider button:before {
+        font-family: 'xeicon';
+        color: #fff;
+        font-size: 45px ;
+      }
+      .slider button.slick-prev {
+        left: 50px;
+        font-size: 0;
+        color: transparent;
+      }
+      .slider button.slick-prev:before {
+        content: "\e93d";
+        font-family: 'xeicon';
+      }
+      .slider button.slick-next {
+        right: 50px;
+        font-size: 0;
+        color: transparent;
+      }
+      .slider button.slick-next:before {
+        content: "\e940";
+        font-family: 'xeicon';
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HTML 구조 -->
+    <section class="slider">
+      <div>
+        <img
+          src="https://i.ytimg.com/vi/4IixKEEFDbc/maxresdefault.jpg"
+          alt="이미지 1"
+        />
+      </div>
+      <div>
+        <img
+          src="https://i.namu.wiki/i/7Wc5p9D5RBJrWovOA_-aPNVE7YdY-TFSPL5sn05vi0Y1w4g5esnouINxSBrOdKkKooMpr-VV_uw5jEhQUY_Mnw.webp"
+          alt="이미지 2"
+        />
+      </div>
+      <div>
+        <img
+          src="data:image/jpeg;base64,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"
+          alt="이미지 3"
+        />
+      </div>
+      <div>
+        <img
+          src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc8BSIk%2FbtqVdM0NiuC%2F2PBGwsMSqgBBof6k1pP0G1%2Fimg.png"
+          alt="이미지 4"
+        />
+        </div>
+    </section>
+ 
+    <script>
+      //$가 있고 선택자가 있으면 jQuery 입니다.
+      $(".slider").slick({ // .는 css 에서 클래스 지정입니다.
+        autoplay:true,
+        autoplaySpeed: 2000
+    });
+ 
+    </script>
+  </body>
+</html>

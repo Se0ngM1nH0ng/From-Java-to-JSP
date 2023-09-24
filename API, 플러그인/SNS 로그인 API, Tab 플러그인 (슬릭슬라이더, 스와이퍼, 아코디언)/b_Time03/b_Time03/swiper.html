@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Swiper 활용</title>
+     
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
+
+    <!-- Demo styles -->
+    <style>
+      html,
+      body {
+        position: relative;
+        height: 100%;
+      }
+
+      body {
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+
+      .swiper {
+        width: 600px;
+        height: 600px;
+        position: absolute;
+        left: 40%;
+        top: 50%;
+        margin-left: -150px;
+        margin-top: -150px;
+      }
+
+      .swiper-slide {
+        background-position: center;
+        background-size: cover;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img
+            src="https://e1.pxfuel.com/desktop-wallpaper/9/678/desktop-wallpaper-synthwave-windows-10-theme-windows-10-themes-thumbnail.jpg"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://e1.pxfuel.com/desktop-wallpaper/994/346/desktop-wallpaper-new-mac-os-x-lion-galaxy-of-andromeda-space-from-wwdc-for-mac-thumbnail.jpg"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://e1.pxfuel.com/desktop-wallpaper/284/376/desktop-wallpaper-nice-and-beautiful-winter-and-theme-for-windows-10-backgrounds-windows-winter-thumbnail.jpg"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://e0.pxfuel.com/wallpapers/189/337/desktop-wallpaper-windows-10-default-os-windows-10-original.jpg"
+          />
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <!--스와이퍼 초기화 및 추가 설정  -->
+    <!-- 자주 사용하지 않지만 상황에 따라 슬라이드를 커스텀 할수있습니다.-->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        effect: "cube",
+        /*
+        슬라이드 애니메이션 효과를 설정합니다.
+        slide: 기본 슬라이드 효과 (기본값)
+        fade: 페이드 효과
+        cube: 큐브 효과
+        coverflow: 커버플로우 효과
+        flip: 플립 효과
+        */
+        grabCursor: true,
+        // 데스크탑 사용성을 약간 향상시킬 수 있습니다.
+        cubeEffect: {
+          shadow: true, // 컨텐츠를 넘길 떄 이전 컨텐츠가 약간씩 어두워진다.
+          slideShadows: true,
+          shadowOffset: 20,
+          shadowScale: 0.94,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          /*페이징 설정 여부를 결정합니다.
+            alse: 페이징 끔 (기본값)
+            true: 페이징 켬
+            type: 페이징 종류 (bullets, fraction, progressbar, custom)
+          */
+        },
+      });
+    </script>
+  </body>
+</html>

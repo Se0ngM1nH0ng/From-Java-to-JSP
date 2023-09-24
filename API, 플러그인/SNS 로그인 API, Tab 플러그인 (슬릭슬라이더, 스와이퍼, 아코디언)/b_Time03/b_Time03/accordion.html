@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Accordion</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="assets/css/main.css" />
+<noscript>
+	<link rel="stylesheet" href="assets/css/noscript.css" />
+</noscript>
+</head>
+<style type="text/css">
+.aco_list {
+	list-style: none;
+	padding: 0;
+}
+
+.aco_list li {
+	border-bottom: 1px solid #ddd;
+}
+
+.aco_list li a {
+	display: block;
+	height: 50px;
+	padding-left: 20px;
+	line-height: 50px;
+	color: #222;
+	text-decoration: none;
+	transition: 0.2s;
+	background-color: #f8f8f8; /* 배경색을 변경합니다. */
+	border: 1px solid #ddd; /* 테두리를 추가합니다. */
+	border-radius: 5px; /* 버튼의 모서리를 둥글게 만듭니다. */
+}
+
+.aco_list li a:hover {
+	background-color: #222;
+	color: #fff;
+}
+
+.aco_list li .text_box {
+	display: none;
+	padding: 40px 40px;
+	color: #555;
+}
+</style>
+<body class="is-preload">
+	<div id="wrapper">
+		<header id="header" class="alt">
+			<span class="logo"><img src="images/logo.svg" alt="" /></span>
+			<h1>Accordion</h1>
+		</header>
+		<div id="main">
+			<ul class="aco_list">
+				<li><a href="#">[14F] “우리가 처음 만난 건 60년 전”...긴 로맨스 끝에 프로포즈 성공한 이 커플의 정체</a>
+					<p class="text_box">60년을 기다려온 사랑이 있다면 믿어지시나요? 영화 속에서나 벌어질 것 같은
+						이야기인데요. 그런데 여기, 60년을 기다려 청혼에 성공한 커플이 있습니다. 주인공은 노 신사 토마스와 그녀의 연인
+						낸시인데요. 과연 그들에겐 어떤 사연이 있었던 걸까요?</p></li>
+						
+				<li><a href="#">[14F] 10배나 올랐는데… 가격 내려갈 기미가 안 보인다는 스리라차 소스?</a>
+					<p class="text_box">쌀국수, 샐러드, 고기류와 찍어 먹으면 찰떡인 스리라차 소스. 그런데 최근
+						들어 미국에서는 이 스리라차 소스 품귀 현상이 심각하다고 해요. 이베이, 아마존 등의 전자 상거래 사이트에서는 스리라차
+						소스에 ‘프리미엄’ 가격이 붙어 판매되고 있다는데요. 가격은 무려 10배 가까이 뛰었다고 해요.</p></li>
+						
+				<li><a href="#">[14F] 서울시 "7월 1일부터 지하철 10분 내 다시 타면 무료"..적용되는 노선 어디?</a>
+					<p class="text_box">서울시가 오는 7월부터 지하철에서 내린 뒤 10분 안에 재승차하면 추가 요금을
+						면제해주는 ‘10분 내 재승차 환승 제도’를 도입하는데요. 지하철을 타고 가다가 급히 화장실에 들르거나 실수로 반대
+						방향 개찰구에 태그한 경우에도 10분 내로 돌아가기만 하면 추가 요금을 낼 필요가 없게 됩니다.</p></li>
+				
+				<li><a href="#">[14F] 음주운전 ‘3번 적발 시’ 차량 몰수까지? 7월부터 강화되는 음주단속 참고하세요</a>
+					<p class="text_box">일상이 회복되면서 사람들끼리 술자리를 갖는 일도 잦아지고 있죠. 그만큼
+						음주운전 사고도 다시 증가하고 있는데요. 이에 정부는 오는 7월부터 ‘검·경 합동 음주운전 근절 대책’을 시행한다고
+						밝혔어요. 앞으로 술을 마시고 운전하다 사망 사고를 내거나, 상습적으로 음주운전을 하는 경우, 운전자의 차량을
+						몰수하기로 했습니다</p></li>
+			</ul>
+		</div>
+			<a href="index.html">메인으로 돌아가기</a>
+	</div>
+
+
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+		integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$(function() {
+			const acoAco = $(".aco_list li a");
+
+			acoAco.on("click", function() {
+				const item = $(this);
+				let speed = 500;
+
+				acoAco.parent().find(".text_box").stop().slideUp(speed);
+				if (item.hasClass("active")) {
+					item.find(".text_box").slideUp(speed);
+					item.removeClass("active");
+				} else {
+					item.parent().find(".text_box").stop().slideDown(speed);
+					acoAco.removeClass("active");
+					item.addClass("active");
+				}
+			});
+		});
+	</script>
+</body>
+</html>

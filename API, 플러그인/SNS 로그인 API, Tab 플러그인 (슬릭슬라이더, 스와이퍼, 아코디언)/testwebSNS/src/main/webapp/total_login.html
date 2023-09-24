@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>로그인 페이지</title>
+	<link rel="stylesheet" href="css/style.css"><!-- 쿠팡로그인 따라하기-->
+	<script src="javascript/javascript.js"></script><!-- 쿠팡로그인 동작 따라하기 -->
+	
+	<!-- jQuery 라이브러리 가져오기.  -->
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" 
+		integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous">//jQuery</script>
+		
+<!-- ---------------------------------------------------------------------------------------------------------- -->
+
+	<!-- Google API를 사용하기 위한 스크립트 -->
+	<script src="https://accounts.google.com/gsi/client" async defer>//Google api</script>
+	
+	<!-- Naver API를 사용하기 위한 스크립트 -->
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8">//naver api</script>
+	
+	<!--  Kakao API를 사용하기 위한 스크립트를 불러옴 -->
+	<script src="https://developers.kakao.com/sdk/js/kakao.js">//kakao api</script>
+	<!-- 개발자 사이트에서 발급받은 앱 ID를 초기화 -->
+	<script>Kakao.init('c907491a1d53da756a3e651bd603bec2'); console.log(Kakao.isInitialized()); </script>
+	
+	<div id="fb-root"></div> <!-- Facebook API와의 통신을 위한 HTML 요소 -->
+	<!-- Facebook SDK(소프트웨어 개발 키트)를 불러옴 -->
+	<script async defer crossorigin="anonymous"
+		src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v17.0&appId=590307866459528&autoLogAppEvents=1"
+		nonce="dQT4DJgb"></script>
+</head>
+
+<body>
+<!--------------------------------- 디자인 영역 : 쿠팡 처럼 보이게 하려고 한거 ---------------------------------------------->
+	<h1><a href="#"><img alt="ChatSLK" src="images/ChatSLK_logo.png"></a></h1> <!-- 로고 -->
+	<main>
+		<div id="loginbar">
+			<form action="#" method="get" id="loginform">
+				<fieldset>
+					<legend class="skip">로그인 양식</legend>
+					<ul>
+						<li>
+							<span class="id_bg"><!-- 로그인 로고--></span>
+							<span><input type="text" name="user_id" placeholder="아이디"></span>
+						</li>
+						<li class="error id_error">아이디를 입력해주세요.</li>
+						<li>
+							<span class="pw_bg"><!-- 비밀번호 로고--></span>
+							<span><input type="password" name="user_pw" placeholder="비밀번호"></span>
+							<span class="pw_show_hide" title="문자보이기"></span>
+						</li>
+						<li class="error pw_error">비밀번호를 입력해주세요.</li>
+					</ul>
+					<div class="btm">
+						<p>
+							<label>
+								<input type="checkbox" name="login_y" id="login_y">
+								<span>자동로그인</span>
+							</label>
+						</p>
+						<a href="#" class="idpw_search">아이디/비밀번호 찾기</a>
+					</div>
+					<button type="submit" id="login_btn">로그인</button>
+				</fieldset>
+			</form>
+			<a href="#" class="join_link">회원가입</a>
+		</div>
+<!----------------------------------------------- 디자인영역 끝 ----------------------------------------------------->
+<!--  [안녕하세요.  님]  	-->
+		<div id="statusbar">
+			<fieldset>
+				<legend class="skip">로그인 정보</legend>
+				<span>안녕하세요. <div id="status"></div> 님,</span>
+			</fieldset>
+		</div>
+<!---------------------------------------------------------------------------------------------------------------->
+		<div class="snslogin">
+			<!-- 구글 로그인 버튼 -->
+			<div class="google_login">
+				<div id="g_id_onload"
+					data-client_id="378847199952-9f3b0pubnq9lcevarpdng410rkbjdvon.apps.googleusercontent.com"
+					data-callback="handleCredentialResponse"></div>
+				<div class="g_id_signin" data-type="standard" data-size="medium" data-text="signin_with"
+					data-shape="rectangular" data-width=185></div>
+			</div>
+			<!-- 네이버 로그인 버튼 -->
+				<div id="naver_id_login"></div>
+			<!-- 카카오톡 로그인 버튼 -->
+				<a id="custom-login-btn" href="javascript:loginWithKakao()">
+					<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="185"
+						alt="카카오 로그인 버튼" />
+				</a>
+				<br>
+			<!-- 페이스북 로그인 버튼 -->
+				<fb:login-button scope="public_profile,email" data-button-type="login_with" data-width="185"
+					data-size="large" onlogin="checkLoginState();">
+				</fb:login-button>
+		</div>
+	</main>
+	<footer>  
+		&copy; ChatSLK Corp. All rights reserved.
+	</footer>
+	<script>
+	
+<!---------------------------------------------------------------------------------------------------------------->
+	
+		// ※각각 네이버 로그인, 구글 로그인, 카카오톡 로그인을 구현하기 위한 코드※
+		// ---[ 페이스북 로그인 ]-------------------------------------------------------------------------------------------------------------------------------------------------
+
+		// This is called with the results from from FB.getLoginStatus().ß
+		function statusChangeCallback(response) {
+			console.log('페북 로그인 상태 : '+response.status);
+			// response 객체는 현재 로그인 상태를 나타내는 정보를 보여준다. 
+			// 앱에서 현재의 로그인 상태에 따라 동작하면 된다.
+			if (response.status === 'connected') { 
+				// 페이스북을 통해서 로그인이 되어있다.
+				testAPI();
+			}
+				// FB.getLoginStatus()를 호출
+		}
+		// onlogin 핸들러.
+		function checkLoginState() {
+			FB.getLoginStatus(function (response) { //로그인 상태를 가져온 뒤, 
+				statusChangeCallback(response); ////statusChangeCallback() 함수에 결과를 전달
+			});
+		}
+
+		window.fbAsyncInit = function () {
+			FB.init({
+				appId: '590307866459528',
+				cookie: true,  // 쿠키가 세션을 참조할 수 있도록 허용
+				xfbml: true,  // 소셜 플러그인이 있으면 처리
+				version: 'v2.1' // 버전 2.1 사용
+			});
+
+			FB.getLoginStatus(function (response) {
+				statusChangeCallback(response);
+			});
+		};
+		
+		// 로그인이 성공한 다음에는 간단한 그래프API를 호출한다.
+		// 이 호출은 statusChangeCallback()에서 이루어진다.
+		function testAPI() {
+			console.log(testAPI);
+			FB.api('/me?fields=id,name,age_range,birthday,gender,email', function (response) {
+				console.log('페이스북 이메일 : ' + response.email);
+				console.log('페이스북 이름 : ' + response.name);
+				document.getElementById('status').innerHTML = response.name;
+			});
+		}
+	// -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	</script>
+
+
+	<script type="text/javascript">
+		// ---[ 네이버 로그인 ]-------------------------------------------------------------------------------------------------------------------------------------------------
+		var naver_id_login = new naver_id_login("3fvEFqqpBlsooOKMfEkn", "http://localhost:8080/testweb/logintest_naver_callback.html");
+		var state = naver_id_login.getUniqState();
+		naver_id_login.setButton("green", 3, 40);
+		naver_id_login.setDomain("http://localhost:8080/");
+		naver_id_login.setState(state);
+		naver_id_login.setPopup();
+		naver_id_login.init_naver_id_login();
+  	// -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	</script>
+
+
+	<script>
+		// ---[ 구글 로그인 ]-------------------------------------------------------------------------------------------------------------------------------------------------
+		function handleCredentialResponse(response) {
+			// decodeJwtResponse() is a custom function defined by you
+			// to decode the credential response.
+			const responsePayload = parseJwt(response.credential);
+
+			$('#status').append(responsePayload.name);
+			//$('#status').append('<li>ID: ' + responsePayload.sub + '</li>');
+			//$('#status').append('<li>Email: ' + responsePayload.email + '</li>');
+			//$('#status').append('<li>Name: ' + responsePayload.name + '</li>');
+			//$('#status').append('<li>Image: <img src=" ' + responsePayload.picture + '"></li>');
+			console.log("구글 ID : " + responsePayload.sub);
+			console.log("구글 Email : " + responsePayload.email);
+			console.log("구글 Name : " + responsePayload.name);
+			console.log("구글 프로필 사진 URL: " + responsePayload.picture);
+		};
+
+		function parseJwt(token) {
+			var base64Url = token.split('.')[1];
+			var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+			var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+				return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+			}).join(''));
+			return JSON.parse(jsonPayload);
+		};
+		// -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	</script>
+
+
+
+	<script type="text/javascript">
+		// ---[ 카카오톡 로그인 ]-------------------------------------------------------------------------------------------------------------------------------------------------
+		function loginWithKakao() {
+			Kakao.Auth.login({
+				success: function (authObj) {
+					console.log("카카오 login 완료 시 얻는 것 : " + JSON.stringify(authObj));
+					profileWithKakao();
+				},
+				fail: function (err) {
+					alert(JSON.stringify(err))
+				},
+			})
+		}
+		function profileWithKakao() {
+			Kakao.API.request({
+				url: '/v2/user/me',
+				success: function (response) {
+					console.log(response);
+					$('#status').append(response.kakao_account.profile.nickname);
+					console.log('카카오톡 ID : ' + response.id);
+					console.log('카카오톡 이름 : ' + response.kakao_account.profile.nickname);
+					console.log('카카오톡 프로필 이미지 URL : ' + response.properties.thumbnail_image);
+				},
+				fail: function (error) {
+					console.log(error);
+				}
+			});
+		}
+		// -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	</script>
+
+
+
+
+</body>
+
+</html>
